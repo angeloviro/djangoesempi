@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Type Vehicle List</h1>
+  {% if type_vehicle_list %}
+  <ul>
+    {% for type_vehicle in type_vehicle_list %}
+      <li>
+        <a href="{{ type_vehicle.get_absolute_url }}">{{ type_vehicle.description}}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no type vehicles.</p>
+  {% endif %} 
+{% endblock %}
