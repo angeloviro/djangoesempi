@@ -1,16 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Book List</h1>
-  {% if book_list %}
+  <h1>Path offer List</h1>
+  {% if path_offer_list %}
   <ul>
-    {% for book in book_list %}
+    {% for path_offer in path_offer_list %}
       <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+        <a href="{{ path_offer.get_absolute_url }}">{{ path_offer.departure }}</a> ({{path_offer.arrive}})({{path_offer.data_partenza}})({{path_offer.data_arrivo}})({{path_offer.ora_partenza}})({{path_offer.ora_arrivo}})({{path_offer.booked}})({{path_offer.full}})({{path_offer.price}})({{path_offer.max_available}})
       </li>
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no books in the library.</p>
+    <p>There are no path offers.</p>
   {% endif %} 
 {% endblock %}
