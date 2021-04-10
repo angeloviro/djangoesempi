@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Id: {{ user.id}}</h1>
+
+  <p><strong>Email:</strong>{{ user.email}}</p>
+  <p><strong>Admin:</strong> {{ user.admin}}</p>
+  <p><strong>Active:</strong> {{ user.active}}</p>
+  {% for profile in user.profile_set.all %}
+  <p><strong>Name:</strong>{{ profile.name}}</p>
+  <p><strong>Surname:</strong> {{profile.surname}}</p>
+  <p><strong>Address:</strong> {{ profile.address}}</p>
+  <p><strong>City:</strong>{{ profile.city}}</p>
+  <p><strong>Mobile:</strong> {{ profile.mobile}}</p>
+  <p><strong>Description:</strong> {{ profile.description}}</p>
+  {%endfor %}
+  {% for preference in user.preference_set.all %}
+  <p><strong>Conversation:</strong>{{ preference.conversation}}</p>
+  <p><strong>Smoke:</strong> {{preference.smoke}}</p>
+  <p><strong>Animal:</strong> {{ preference.animal}}</p>
+  <p><strong>Music:</strong>{{ preference.music}}</p>
+   {%endfor %}
+   {% for scores in user.scores_set.all %}
+  <p><strong>Scores:</strong>{{ scores.scores}}</p>
+  <p><strong>Count:</strong> {{scores.count}}</p>
+  <p><strong>Total:</strong> {{ scores.total}}</p>
+   {%endfor %}
+
+  {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from passaggi.models import Type_Vehicle, Path_Offer
+from passaggi.models import Type_Vehicle, Path_Offer, User, Vehicle
 
 from django.views import generic
 # Create your views here.
@@ -51,7 +51,7 @@ class Path_OfferListView(generic.ListView):
         context['some_data'] = 'This is just some data'
         return context
     def get_queryset(self):
-        return Path_Offer.objects.filter(departure__icontains='n')[:5] # Get 5 books containing the title war
+        return Path_Offer.objects.filter(departure__icontains='n')[:5]
     template_name = 'path_offers/my_arbitrary_template_name_list.html'  # Specify your own template name/location
 class Path_OfferDetailView(generic.DetailView):
     model = Path_Offer
@@ -63,3 +63,20 @@ class Path_OfferDetailView(generic.DetailView):
             raise Http404('Path Offer does not exist')
 
         return render(request, 'passaggi/path_offer_detail.html', context={'path_offer': path_offer})
+class UserDetailView(generic.DetailView):
+    model= User
+    def user_detail_view(request, primary_key):
+        try:
+            user:User.objects.get(pk=primary_key)
+        except User.DoesNotExist:
+            raise Http404('User does not exist')
+        return render(request, 'passaggi/user_detail.html',context={'user':user})
+class VehicleDetailView(generic.DetailView):
+    model= Vehicle
+    def vehicle_detail_view(request, primary_key):
+        try:
+            vehicle:Vehicle.objects.get(pk=primary_key)
+        except Vehicle.DoesNotExist:
+            raise Http404('Vehicle does not exist')
+        return render(request, 'passaggi/vehicle_detail.html',context={'vehicle': vehicle})
+

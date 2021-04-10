@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Id: {{ vehicle.id}}</h1>
+  <p><strong>Brand:</strong>{{ vehicle.brand}}</p>
+  <p><strong>Colour:</strong>{{ vehicle.colour}}</p>
+  <p><strong>Model:</strong> {{ vehicle.model}}</p>
+  <p><strong>Motor:</strong> {{ vehicle.motor}}</p>
+  <a href="{% url 'user-detail' vehicle.user.pk %}">{{ vehicle.user_id}}</a>
+  <a href="{% url 'type_vehicle-detail' vehicle.type_vehicle.pk %}">{{ vehicle.type_vehicle_id}}</a>
+  {% endblock %}

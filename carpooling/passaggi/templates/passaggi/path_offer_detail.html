@@ -2,7 +2,6 @@
 
 {% block content %}
   <h1>Departure: {{ path_offer.departure}}</h1>
-
   <p><strong>Arrive:</strong>{{ path_offer.arrive}}</p>
   <p><strong>Date of departure:</strong> {{ path_offer.data_partenza}}</p>
   <p><strong>Date of arrive:</strong> {{ path_offer.data_arrivo}}</p>
@@ -12,5 +11,12 @@
   <p><strong>Full:</strong> {{ path_offer.full}}</p>
   <p><strong>Price:</strong> {{ path_offer.price}}</p>
   <p><strong>Max Available:</strong> {{path_offer.max_available}}</p>
-
+<a href="{% url 'user-detail' path_offer.user.pk %}">{{ path_offer.user_id}}</a>
+<a href="{% url 'vehicle-detail' path_offer.vehicle.pk %}">{{ path_offer.vehicle_id}}</a>
+{% for feedback in path_offer.feedback_set.all %}
+  <p><strong>Scores:</strong>{{ feedback.scores}}</p>
+  <p><strong>Feedback:</strong> {{feedback.feedback}}</p>
+  <p><strong>Title:</strong> {{ feedback.title}}</p>
+  <a href="{% url 'user-detail' feedback.user.pk %}">{{ feedback.user_id}}</a>
+   {%endfor %}
   {% endblock %}

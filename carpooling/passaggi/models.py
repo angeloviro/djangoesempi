@@ -5,10 +5,14 @@ class Type_Vehicle(models.Model):
     """Model representing a type vehicle."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     description = models.CharField(max_length=45, help_text='Enter a type vehicle')
-
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this type vehicle."""
+        return reverse('type_vehicle-detail', args=[str(self.id)])
     def __str__(self):
         """String for representing the Model object."""
         return self.description
+    class Meta:
+        ordering = ['id']
 class User(models.Model):
     """Model representing an user."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -16,7 +20,9 @@ class User(models.Model):
     encrypted_password=models.CharField(max_length=45)
     admin=models.BooleanField()
     active=models.BooleanField()
-
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this user."""
+        return reverse('user-detail', args=[str(self.id)])
     def __str__(self):
         """String for representing the Model object."""
         return self.email
@@ -72,9 +78,13 @@ class Path_Offer( models.Model):
     price=models.FloatField()
     full=models.BooleanField()
     booked=models.BooleanField()
-
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this path offer."""
+        return reverse('path_offer-detail', args=[str(self.id)])
     def __str__(self):
         return f'{self.departure},{self.arrive},{self.data_partenza},{self.data_arrivo},{self.ora_partenza},{self.ora_arrivo}'
+    class Meta:
+        ordering = ['id']
 class Feedback(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     scores=models.IntegerField()
